@@ -1,0 +1,222 @@
+/* =========================================================
+   BRAND MARQUEE
+========================================================= */
+
+.brand-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  padding: 18px 0;
+}
+
+
+/* =========================================================
+   FADE EDGES
+========================================================= */
+
+.brand-marquee::before,
+.brand-marquee::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 100px;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.brand-marquee::before {
+  left: 0;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.brand-marquee::after {
+  right: 0;
+
+  background: linear-gradient(
+    270deg,
+    #ffffff,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+
+/* =========================================================
+   MOVING TRACK
+========================================================= */
+
+.brand-marquee__track {
+  display: flex;
+  width: max-content;
+
+  animation: brandScroll 25s linear infinite;
+
+  will-change: transform;
+}
+
+
+/* =========================================================
+   BRAND GROUP
+========================================================= */
+
+.brand-marquee__group {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BRAND ITEM
+========================================================= */
+
+.brand-marquee__item {
+  width: 180px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 30px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BRAND LOGO
+========================================================= */
+
+.brand-marquee__item img {
+  display: block;
+
+  width: auto;
+  max-width: 125px;
+}
+
+
+/* Hover */
+
+.brand-marquee__item:hover img {
+  filter: grayscale(0%);
+
+  opacity: 1;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   INFINITE ANIMATION
+========================================================= */
+
+@keyframes brandScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* =========================================================
+   HOVER = PAUSE
+========================================================= */
+
+.brand-marquee:hover .brand-marquee__track {
+  animation-play-state: paused;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .brand-marquee {
+    padding: 15px 0;
+  }
+
+  .brand-marquee__item {
+    width: 145px;
+    height: 48px;
+
+    padding: 0 20px;
+  }
+
+  .brand-marquee__item img {
+    max-width: 105px;
+    height: 27px;
+  }
+
+  .brand-marquee::before,
+  .brand-marquee::after {
+    width: 50px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .brand-marquee {
+    padding: 12px 0;
+  }
+
+  .brand-marquee__track {
+    animation-duration: 20s;
+  }
+
+  .brand-marquee__item {
+    width: 120px;
+    height: 42px;
+
+    padding: 0 15px;
+  }
+
+  .brand-marquee__item img {
+    max-width: 90px;
+    height: 23px;
+  }
+
+  .brand-marquee::before,
+  .brand-marquee::after {
+    width: 35px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .brand-marquee__track {
+    animation: none;
+  }
+}
